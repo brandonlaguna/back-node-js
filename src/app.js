@@ -12,7 +12,7 @@ const authRoutes = require("./routes/auth.routes");
 const userRoutes = require("./routes/user.routes");
 //CONFIG
 dotenv.config();
-connectDB();
+//connectDB();
 
 // Configura CORS para permitir solo tu frontend
 const corsOptions = {
