@@ -12,7 +12,7 @@ router.post("/refresh", authController.refreshToken);
 
 router.post(
   "/register",
-  authMiddleware("CREATE_USER"),
+  // authMiddleware("CREATE_USER"),
   authController.register
 );
 

@@ -12,11 +12,12 @@ const authRoutes = require("./routes/auth.routes");
 const userRoutes = require("./routes/user.routes");
 //CONFIG
 dotenv.config();
-//connectDB();
+connectDB();
 
 // Configura CORS para permitir solo tu frontend
 const corsOptions = {
-  origin: "http://localhost:4001", // Cambia esto por la URL de tu frontend de React o Vue
+  origin:
+    "http://localhost:3000,https://asoporkmag.com,www.asoporkmag.com,https://asoporkmag.com.co,www.asoporkmag.com.co",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
   optionsSuccessStatus: 204,
