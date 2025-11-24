@@ -68,6 +68,16 @@ const register = async (req, res) => {
       secondLastName,
       ROLE,
       CLAIMS,
+      email,
+      description,
+      phone,
+      address,
+      photo,
+      birthDate,
+      facebookId,
+      instagramId,
+      twitterId,
+      linkedinId,
     } = req.body;
 
     const existing = await authService.findUserByUsername(username);
@@ -83,6 +93,16 @@ const register = async (req, res) => {
       secondName,
       lastName,
       secondLastName,
+      email,
+      description,
+      phone,
+      address,
+      photo,
+      birthDate,
+      facebookId,
+      instagramId,
+      twitterId,
+      linkedinId,
       ROLE,
       CLAIMS,
     });

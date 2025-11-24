@@ -10,14 +10,20 @@ const connectDB = require("./utils/mongo");
 // ROUTES
 const authRoutes = require("./routes/auth.routes");
 const userRoutes = require("./routes/user.routes");
+const postRoutes = require("./routes/post.routes");
 //CONFIG
 dotenv.config();
 connectDB();
 
 // Configura CORS para permitir solo tu frontend
 const corsOptions = {
-  origin:
-    "http://localhost:3000,https://asoporkmag.com,www.asoporkmag.com,https://asoporkmag.com.co,www.asoporkmag.com.co",
+  origin: [
+    "http://localhost:3000",
+    "https://asoporkmag.com",
+    "https://www.asoporkmag.com",
+    "https://asoporkmag.com.co",
+    "https://www.asoporkmag.com.co",
+  ],
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
   optionsSuccessStatus: 204,
@@ -26,11 +32,16 @@ const corsOptions = {
 app.use(cors(corsOptions));
 
 // Middleware para procesar JSON en las solicitudes
-app.use(express.json());
+app.use(express.json({ limit: "50mb" }));
+app.use(express.urlencoded({ limit: "50mb", extended: true }));
+
+// SERVE STATIC FILES
+app.use("/uploads", express.static(process.env.FILE_UPLOAD_PATH));
 
 // DEFINE ROUTES V1
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/users", userRoutes);
+app.use("/api/v1/post", postRoutes);
 
 //RUN SERVER
 const PORT = process.env.PORT || 3000;

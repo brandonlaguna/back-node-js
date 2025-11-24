@@ -10,6 +10,16 @@ const UserSchema = new mongoose.Schema(
     secondName: { type: String },
     lastName: { type: String, required: true },
     secondLastName: { type: String },
+    description: { type: String },
+    email: { type: String, required: true, unique: true },
+    phone: { type: String },
+    address: { type: String },
+    photo: { type: String },
+    birthDate: { type: Date },
+    facebookId: { type: String },
+    instagramId: { type: String },
+    twitterId: { type: String },
+    linkedinId: { type: String },
     // ROLE
     ROLE: {
       type: String,
