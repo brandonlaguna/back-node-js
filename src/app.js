@@ -43,8 +43,12 @@ app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/post", postRoutes);
 
+app.get("/healtcheck", (req, res) => {
+  res.status(200).json({ status: "OK" });
+});
+
 //RUN SERVER
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3002;
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en el puerto ${PORT}`);
 });
