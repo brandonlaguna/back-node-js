@@ -60,7 +60,7 @@ const uploadImage = async (req, res) => {
     }
     const protocol = req.protocol;
     const host = req.get("host");
-    const url = `${protocol}://${host}/src/uploads/${req.file.filename}`;
+    const url = `${protocol}://${host}/uploads/${req.file.filename}`;
     return success(res, { url }, "Imagen subida exitosamente", 201);
   } catch (e) {
     return error(res, e.message, 500);

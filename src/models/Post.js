@@ -6,6 +6,7 @@ const UserSchema = new mongoose.Schema(
     title: { type: String, required: true },
     subtitle: { type: String, required: true },
     content: { type: String, required: true },
+    cover: { type: String, required: true },
     // ROLE
     TYPE: { type: mongoose.Schema.Types.ObjectId, ref: "Type", required: true },
     postBy: {
