@@ -2,6 +2,7 @@ const { Router } = require("express");
 const authMiddleware = require("../utils/authMiddleWare");
 const postController = require("../controllers/post.controller");
 const { upload } = require("../utils/multerMiddleWare");
+const { default: fileUploader } = require("../utils/fileUploader");
 
 const router = Router();
 
@@ -23,6 +24,10 @@ router.post(
 
 router.post("/getTypes", postController.getTypes);
 
-router.post("/uploadImage", upload.single("file"), postController.uploadImage);
+router.post(
+  "/uploadImage",
+  fileUploader.uploadAndResize(),
+  postController.uploadImage
+);
 
 module.exports = router;

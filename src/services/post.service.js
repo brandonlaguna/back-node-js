@@ -8,9 +8,12 @@ const createPost = async (data) => {
 };
 
 const getPosts = async (filter = {}) => {
-  return await Post.find(filter)
+  limit = filter.limit || 0;
+  return await Post.find()
     .populate("postBy", "name email")
-    .populate("TYPE", "name");
+    .populate("TYPE", "name")
+    .sort({ $natural: -1 })
+    .limit(limit);
 };
 
 const getPostById = async (id) => {

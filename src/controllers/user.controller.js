@@ -24,4 +24,18 @@ const getIdNameByTypeUser = async (req, res) => {
   }
 };
 
-module.exports = { getIdNameByTypeUser };
+const getUsersByTypePublic = async (req, res) => {
+  try {
+    const { typeUser } = req.body;
+    const response = await userService.getUserByType(typeUser);
+
+    if (!response) {
+      return error(res, "Ocurrió un error al consultar los usuarios", 401);
+    }
+    return success(res, response, "Consulta satisfactoria", 200);
+  } catch (e) {
+    return error(res, e, 500);
+  }
+};
+
+module.exports = { getIdNameByTypeUser, getUsersByTypePublic };

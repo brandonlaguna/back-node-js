@@ -4,7 +4,8 @@ const { success, error } = require("../utils/response");
 
 const getAll = async (req, res) => {
   try {
-    const getAllPosts = await postService.getPosts();
+    const filter = req.body || {};
+    const getAllPosts = await postService.getPosts(filter);
     return success(res, getAllPosts, "Consulta satisfactoria", 200);
   } catch (e) {
     return error(res, e, 500);

@@ -24,12 +24,12 @@ const UserSchema = new mongoose.Schema(
     ROLE: {
       type: String,
       required: true,
-      enum: ["STUDENT", "TEACHER", "ADMIN", "OBSERVER"],
+      enum: ["ADMIN", "BUSINESS", "MEMBER", "CLIENT"],
     },
     // CLAIMS
     CLAIMS: {
       type: [String], // array de strings
-      default: ["VIEW_CLASS", "UPDATE_USER"], // valores iniciales
+      default: ["CREATE_POST", "UPDATE_USER"], // valores iniciales
     },
   },
   { timestamps: true }

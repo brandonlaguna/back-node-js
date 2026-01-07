@@ -12,6 +12,8 @@ const connectDB = require("./utils/mongo");
 const authRoutes = require("./routes/auth.routes");
 const userRoutes = require("./routes/user.routes");
 const postRoutes = require("./routes/post.routes");
+const productsRoutes = require("./routes/products.router");
+
 //CONFIG
 dotenv.config();
 connectDB();
@@ -44,6 +46,7 @@ app.use("/uploads", express.static(uploadsPath));
 app.use("/api/v1/auth", authRoutes);
 app.use("/api/v1/users", userRoutes);
 app.use("/api/v1/post", postRoutes);
+app.use("/api/v1/products", productsRoutes);
 
 app.get("/healtcheck", (req, res) => {
   res.status(200).json({ status: "OK" });

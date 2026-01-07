@@ -2,9 +2,9 @@ const User = require("../models/User");
 
 const typeUsers = {
   ADMIN: "ADMIN",
-  STUDENT: "STUDENT",
-  TEACHER: "TEACHER",
-  OBSERVER: "OBSERVER",
+  BUSINESS: "BUSINESS",
+  MEMBER: "MEMBER",
+  CLIENT: "CLIENT",
 };
 
 const getUserById = async (_id) => {
@@ -28,8 +28,25 @@ const getIdNameByTypeUser = async (decodedToken, typeUserParam) => {
   }
 };
 
+const getUserByType = async (typeUserParam) => {
+  try {
+    if (!Object.values(typeUsers).includes(typeUserParam)) {
+      throw new Error(`Tipo de usuario inválido: ${typeUserParam}`);
+    }
+
+    const filter = { ROLE: typeUserParam };
+    const result = await User.find(filter).select(
+      "name firstName secondName lastName secondLastName description photo birthDate facebookId instagramId twitterId linkedinId"
+    );
+    return result;
+  } catch (e) {
+    return e.message;
+  }
+};
+
 module.exports = {
   getUserById,
   getUsersByAllId,
   getIdNameByTypeUser,
+  getUserByType,
 };
