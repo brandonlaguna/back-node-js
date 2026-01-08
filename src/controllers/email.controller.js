@@ -21,6 +21,22 @@ const getInTouch = async (req, res) => {
       message: message,
     };
 
+    const subscriberData = {
+      name: name,
+      email: email,
+      phone: "",
+      type: "contact",
+    };
+
+    const saveNewSubscriber = subscriberService.newSubscriber(subscriberData);
+    if (!saveNewSubscriber) {
+      return error(
+        res,
+        "No se puede contactar en este momento, intentelo mas tarde",
+        400
+      );
+    }
+
     // Enviar email a la organización
     const emailSent = await emailService.sendEmail(
       "brandonlagunarl@gmail.com", // process.env.GMAIL_ACCOUNT_USER,
