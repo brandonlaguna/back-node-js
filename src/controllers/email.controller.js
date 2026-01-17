@@ -33,15 +33,15 @@ const getInTouch = async (req, res) => {
       return error(
         res,
         "No se puede contactar en este momento, intentelo mas tarde",
-        400
+        400,
       );
     }
 
     // Enviar email a la organización
     const emailSent = await emailService.sendEmail(
-      "brandonlagunarl@gmail.com", // process.env.GMAIL_ACCOUNT_USER,
+      process.env.GMAIL_ACCOUNT_USER,
       `Nuevo mensaje de contacto de ${name}`,
-      templateData
+      templateData,
     );
 
     if (emailSent) {
@@ -82,15 +82,15 @@ const subscribeNewsLetter = async (req, res) => {
       return error(
         res,
         "No se puede suscrbir en este momento, intentelo mas tarde",
-        400
+        400,
       );
     }
 
     // Enviar email a la organización
     const emailSent = await emailService.newSubscriber(
-      "brandonlagunarl@gmail.com", // process.env.GMAIL_ACCOUNT_USER,
+      process.env.GMAIL_ACCOUNT_USER,
       `Nuevo Suscriptor - ${email}`,
-      templateData
+      templateData,
     );
 
     if (emailSent) {
