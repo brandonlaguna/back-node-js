@@ -24,7 +24,7 @@ const login = async (req, res) => {
 
     return success(res, { token, refreshToken }, "Login Correcto");
   } catch (e) {
-    return error(error, "Error al iniciar sesion, intentelo nuevamente", 500);
+    return error(res, "Error al iniciar sesion, intentelo nuevamente", 500);
   }
 };
 
@@ -49,7 +49,7 @@ const refreshToken = (req, res) => {
       res,
       { token, refreshToken: newRefreshToken },
       "Login correcto",
-      200
+      200,
     );
   } catch (e) {
     return error(res, e.message, 500);
